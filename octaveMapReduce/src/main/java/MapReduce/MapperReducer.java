@@ -26,20 +26,8 @@ public class MapperReducer extends Configured implements Tool {
 		private static final String SEPARATOR = ";";
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 			final String[] values = value.toString().split(SEPARATOR);
-
-			// final String date = format(values[0]);
 			final String co = format(values[1]);
-			// final String no = format(values[2]);
-			// final String no2 = format(values[3]);
-			// final String o3 = format(values[4]);
-			// final String pm10 = format(values[5]);
-			// final String sh2 = format(values[6]);
-			// final String pm25 = format(values[7]);
-			// final String pst = format(values[8]);
-			// final String so2 = format(values[9]);
 			final String province = format(values[10]);
-			// final String station = format(values[11]);
-
 			if (NumberUtils.isNumber(co.toString())) {
 				context.write(new Text(province), new DoubleWritable(NumberUtils.toDouble(co)));
 			}
@@ -84,8 +72,8 @@ public class MapperReducer extends Configured implements Tool {
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		job.setMapperClass(AirQualityMapper.class);
-		job.setReducerClass(AirQualityReducer.class);
+		job.setMapperClass(MapperReducer.class);
+		job.setReducerClass(MapperReducer.class);
 
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(DoubleWritable.class);
