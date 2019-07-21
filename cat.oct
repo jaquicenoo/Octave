@@ -1,8 +1,5 @@
-﻿#!/user/bin/octave -qf
+﻿#!/usr/bin/octave -qf
 
-clc
-clear all
-close all
 
 %%%%%Ejecución del algoritmo DE%%%%%
 
